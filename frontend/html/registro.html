@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Conecta & Crece</title>
+    <link rel="stylesheet" href="../css/registro.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Conecta & Crece</h1>
+                <div class="logo-glow"></div>
+            </div>
+            <div class="orb-menu-toggle" style="display: none;">🌐</div>
+            <div class="orb-menu" style="display: none;">
+                <ul class="orb-items">
+                    <!-- Opciones ocultas hasta login -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="titulo-neon">Únete a la Comunidad</h1>
+            <p class="subtitulo-neon">Crea tu cuenta y empieza a crecer</p>
+        </div>
+        <canvas class="particle-canvas"></canvas>
+    </section>
+
+    <main>
+        <div class="register-container">
+            <div class="neon-sign">Regístrate</div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <input type="text" id="nombreCompleto" placeholder="Nombre completo" required pattern="[A-Za-z\s]{2,50}" title="Solo letras y espacios, máximo 50 caracteres">
+                    <span class="input-icon">👤</span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="correo" placeholder="Correo electrónico" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Ingresa un correo válido">
+                    <span class="input-icon">✉️</span>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Contraseña (mín. 8 caracteres)" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Mínimo 8 caracteres, al menos una letra y un número">
+                    <span class="input-icon">🔒</span>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
+                    <span class="input-icon">🔒</span>
+                </div>
+                <div class="form-group role-selector">
+                    <h3 class="neon-subtext">Elige tu rol</h3>
+                    <div class="role-buttons">
+                        <button type="button" class="role-btn" data-rol="emprendedor">Emprendedor</button>
+                        <button type="button" class="role-btn" data-rol="mentor">Mentor</button>
+                        <button type="button" class="role-btn" data-rol="inversor">Inversor</button>
+                        <button type="button" class="role-btn" data-rol="administrador">Administrador</button>
+                    </div>
+                    <input type="hidden" id="rol" name="rol" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="ubicacion" placeholder="Ubicación (ciudad)" required pattern="[A-Za-z\s]{2,50}" title="Solo letras y espacios, máximo 50 caracteres">
+                    <span class="input-icon">📍</span>
+                </div>
+                <div class="form-group">
+                    <textarea id="bio" placeholder="Biografía (máx. 200 caracteres)" rows="4" required maxlength="200"></textarea>
+                    <span class="input-icon">✍️</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="habilidades" placeholder="Habilidades (separadas por comas)" required pattern="[A-Za-z\s,]{2,100}" title="Solo letras, espacios y comas, máximo 100 caracteres">
+                    <span class="input-icon">🛠️</span>
+                </div>
+                <button type="submit" class="submit-btn">Registrarse</button>
+                <div id="error-message" class="error-message"></div>
+            </form>
+            <p class="login-prompt">¿Ya tienes cuenta? <a href="login.html" class="btn-login">Inicia Sesión</a></p>
+            <a href="#" class="top-link" onclick="scrollToTop()">Volver al inicio</a>
+            <div id="success-popup" class="success-popup">
+                Registro exitoso. <a href="login.html" class="btn-login">Inicia Sesión</a> <span onclick="closePopup()">✖</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-column">
+            <h4>Enlaces Rápidos</h4>
+            <a href="../index.html">Inicio</a>
+            <a href="../comunidad.html">Comunidad</a>
+            <a href="../proyectos.html">Proyectos</a>
+        </div>
+        <div class="footer-column">
+            <h4>Contacto</h4>
+            <p>correo@conectaycrece.com</p>
+            <p>+57 123 456 7890</p>
+        </div>
+        <div class="footer-column">
+            <h4>Redes Sociales</h4>
+            <div class="redes-sociales">
+                <a href="#" class="icono">🌐</a>
+                <a href="#" class="icono">📸</a>
+                <a href="#" class="icono">🔗</a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h4>Copyright</h4>
+            <p>© 2025 Conecta & Crece</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const errorMessage = document.getElementById('error-message');
+        const successPopup = document.getElementById('success-popup');
+        const roleButtons = document.querySelectorAll('.role-btn');
+        let selectedRole = null;
+
+        roleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                roleButtons.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedRole = btn.getAttribute('data-rol');
+                document.getElementById('rol').value = selectedRole;
+            });
+        });
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectedRole) {
+                showError('Debes seleccionar un rol');
+                return;
+            }
+            const nombreCompleto = document.getElementById('nombreCompleto').value.trim();
+            const correo = document.getElementById('correo').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const ubicacion = document.getElementById('ubicacion').value.trim();
+            const bio = document.getElementById('bio').value.trim();
+            const habilidades = document.getElementById('habilidades').value.trim().split(',').map(h => h.trim());
+
+            if (password !== confirmPassword) {
+                showError('Las contraseñas no coinciden');
+                return;
+            }
+            if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+                showError('La contraseña debe tener al menos 8 caracteres, una letra y un número');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/registro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nombre: nombreCompleto.split(' ')[0],
+                        apellido: nombreCompleto.split(' ').slice(1).join(' ') || '',
+                        correo: correo,
+                        password: password,
+                        rol: selectedRole,
+                        ubicacion: ubicacion,
+                        bio: bio,
+                        habilidades: habilidades.join(', ')
+                    })
+                });
+                if (!response.ok) throw new Error('Respuesta no exitosa: ' + response.status);
+                const result = await response.json();
+                if (result.message === 'Usuario registrado exitosamente') showSuccess();
+                else showError(result.error || 'Error en el registro');
+            } catch (error) {
+                showError('Error de conexión con el servidor: ' + error.message);
+            }
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            gsap.fromTo(errorMessage, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5 });
+            setTimeout(() => gsap.to(errorMessage, { opacity: 0, y: -20, duration: 0.5, onComplete: () => errorMessage.style.display = 'none' }), 3000);
+        }
+
+        function showSuccess() {
+            successPopup.style.display = 'block';
+            gsap.fromTo(successPopup, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out' });
+            setTimeout(() => gsap.to(successPopup, { scale: 0, opacity: 0, duration: 0.5, onComplete: () => {
+                successPopup.style.display = 'none';
+                window.location.href = 'login.html';
+            }}), 3000);
+        }
+
+        function closePopup() {
+            gsap.to(successPopup, { scale: 0, opacity: 0, duration: 0.5, onComplete: () => {
+                successPopup.style.display = 'none';
+                window.location.href = 'login.html';
+            }});
+        }
+
+        function scrollToTop() {
+            gsap.to(window, { duration: 1, scrollTo: 0 });
+        }
+
+        const canvas = document.querySelector('.particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particlesArray = [];
+        const numberOfParticles = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.color = `hsl(${Math.random() * 360}, 70%, 50%)`;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+                if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const orbToggle = document.querySelector('.orb-menu-toggle');
+        const orbItems = document.querySelectorAll('.orb-items li');
+        let isOpen = false;
+
+        orbToggle.addEventListener('click', () => {
+            isOpen = !isOpen;
+            orbItems.forEach((item, index) => {
+                const totalItems = orbItems.length;
+                const angle = (index * (360 / totalItems)) * Math.PI / 180;
+                const radius = 130;
+                gsap.to(item, {
+                    x: isOpen ? Math.cos(angle) * radius : 0,
+                    y: isOpen ? Math.sin(angle) * radius + 120 : 0,
+                    opacity: isOpen ? 1 : 0,
+                    duration: 0.5,
+                    delay: index * 0.1,
+                    ease: "back.out(1.7)"
+                });
+            });
+        });
+    </script>
+</body>
+</html>

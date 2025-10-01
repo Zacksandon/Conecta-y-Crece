@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Conecta & Crece</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Conecta & Crece</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li id="user-info"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="admin-container">
+            <h1 class="titulo-neon">Panel de Administración</h1>
+            <div id="reportes"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Conecta & Crece. Todos los derechos reservados.</p>
+        <div class="redes-sociales">
+            <a href="#" class="icono"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icono"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="icono"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        const reportesDiv = document.getElementById('reportes');
+        const userInfo = document.getElementById('user-info');
+
+        // Mostrar usuario logueado
+        window.addEventListener('load', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                userInfo.innerHTML = `<a href="#" style="color: #00BFFF;">Sesión: ${user.nombre} ${user.apellido} (Salir)</a>`;
+                userInfo.querySelector('a').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('user');
+                    userInfo.innerHTML = '';
+                    window.location.reload();
+                });
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Cargar reportes
+        async function loadReportes() {
+            try {
+                const response = await fetch('http://localhost:5000/admin/reportes', {
+                    method: 'GET',
+                    headers: { 'Authorization': 'Bearer admin123' } // Token simulado
+                });
+
+                if (!response.ok) {
+                    throw new Error('Acceso denegado o error: ' + response.status);
+                }
+
+                const result = await response.json();
+                if (result.reportes) {
+                    let html = '<h2 class="neon-subtext">Reportes de Usuarios</h2><ul>';
+                    result.reportes.forEach(user => {
+                        html += `
+                            <li class="user-report">
+                                <span>${user.nombre} ${user.apellido} (${user.rol})</span>
+                                <span>Correo: ${user.correo}</span>
+                                <span>Ubicación: ${user.ubicacion}</span>
+                                <span>Bio: ${user.bio}</span>
+                                <span>Habilidades: ${user.habilidades}</span>
+                                <button class="delete-btn" data-id="${user.id}">Eliminar</button>
+                            </li>
+                        `;
+                    });
+                    html += '</ul>';
+                    reportesDiv.innerHTML = html;
+
+                    // Añadir evento a botones de eliminar
+                    document.querySelectorAll('.delete-btn').forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const userId = btn.getAttribute('data-id');
+                            const confirmDelete = confirm(`¿Eliminar a ${btn.parentElement.querySelector('span').textContent}?`);
+                            if (confirmDelete) {
+                                const deleteResponse = await fetch(`http://localhost:5000/admin/eliminar/${userId}`, {
+                                    method: 'DELETE',
+                                    headers: { 'Authorization': 'Bearer admin123' }
+                                });
+                                if (deleteResponse.ok) {
+                                    btn.parentElement.remove();
+                                    alert('Usuario eliminado exitosamente');
+                                } else {
+                                    alert('Error al eliminar usuario');
+                                }
+                            }
+                        });
+                    });
+                } else {
+                    reportesDiv.innerHTML = '<p class="neon-subtext">No hay usuarios registrados</p>';
+                }
+            } catch (error) {
+                reportesDiv.innerHTML = `<p class="neon-subtext">Error: ${error.message}</p>`;
+                console.error('Error:', error);
+            }
+        }
+
+        loadReportes();
+    </script>
+</body>
+</html>

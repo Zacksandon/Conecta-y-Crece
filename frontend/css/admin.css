@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    background: #0a0a0a;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.navbar .logo h1 {
+    color: #A020F0;
+    margin: 0;
+    font-size: 24px;
+    text-shadow: 0 0 10px #A020F0;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: #00BFFF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #FF00FF;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.admin-container {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #00BFFF;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    animation: float 4s ease-in-out infinite;
+}
+
+.titulo-neon {
+    color: #A020F0;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px #A020F0;
+}
+
+.neon-subtext {
+    color: #FF00FF;
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px #FF00FF;
+}
+
+.user-report {
+    background: rgba(42, 42, 42, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+    position: relative;
+}
+
+.user-report span {
+    color: #00BFFF;
+}
+
+.delete-btn {
+    padding: 8px 15px;
+    background: #FF3B9E;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.delete-btn:hover {
+    background: #FF1493;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 600px) {
+    .admin-container {
+        padding: 20px;
+    }
+    .user-report {
+        padding: 10px;
+    }
+}
