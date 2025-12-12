@@ -57,6 +57,20 @@ CREATE TABLE proyectos (
     fecha_fin DATETIME,
     estado ENUM('borrador', 'publicado', 'finalizado') NOT NULL DEFAULT 'borrador',
     activo BOOLEAN DEFAULT TRUE,
+    progreso INT DEFAULT 0,
+    descripcion_larga TEXT,
+    imagen_principal_url VARCHAR(255) NULL,
+    video_pitch_url VARCHAR(255) NULL,
+    catalogo_pdf_url VARCHAR(255) NULL,
+    sitio_web VARCHAR(255) NULL,
+    contacto VARCHAR(255) NULL,
+    telefono_proyecto VARCHAR(50) NULL,
+    whatsapp VARCHAR(50) NULL,
+    instagram VARCHAR(255) NULL,
+    facebook VARCHAR(255) NULL,
+    twitter VARCHAR(255) NULL,
+    linkedin VARCHAR(255) NULL,
+    redes JSON NULL,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
     FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE SET NULL,
     INDEX idx_usuario_id (usuario_id),
@@ -422,3 +436,147 @@ LIMIT 6;
 
 INSERT INTO usuarios (nombre, apellido, correo, password, rol, ubicacion, bio, habilidades, activo)
 VALUES ('Admin', 'Conecta', 'admin@conecta-crece.com', 'adminpass123', 'emprendedor', 'Bogotá', 'Administrador del sistema', 'gestión,reportes', 1);
+
+
+ALTER TABLE usuarios 
+ADD COLUMN IF NOT EXISTS ubicacion VARCHAR(100),
+ADD COLUMN IF NOT EXISTS bio TEXT,
+ADD COLUMN IF NOT EXISTS habilidades TEXT,
+ADD COLUMN IF NOT EXISTS experiencia INT DEFAULT 0,
+ADD COLUMN IF NOT EXISTS intereses TEXT;
+
+-- Verifica que existan
+DESCRIBE usuarios;
+
+
+select * from usuarios;
+
+ALTER TABLE usuarios
+ADD COLUMN foto_url VARCHAR(255) NULL DEFAULT NULL AFTER password;
+
+DESCRIBE usuarios;
+
+USE conecta_crece;
+
+CREATE TABLE conexiones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_origen_id INT NOT NULL,
+    usuario_destino_id INT NOT NULL,
+    estado ENUM('pendiente', 'aceptada', 'rechazada') DEFAULT 'pendiente',
+    fecha_solicitud DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_origen_id) REFERENCES usuarios(id),
+    FOREIGN KEY (usuario_destino_id) REFERENCES usuarios(id),
+    UNIQUE KEY unique_conexion (usuario_origen_id, usuario_destino_id)
+);
+
+
+
+select * from usuarios;
+
+
+CREATE TABLE historias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    titulo VARCHAR(200),
+    contenido TEXT,
+    imagen_url VARCHAR(255),
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    aprobada TINYINT DEFAULT 0,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE reacciones_historias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    historia_id INT,
+    usuario_id INT,
+    tipo ENUM('like', 'inspirado'),
+    FOREIGN KEY (historia_id) REFERENCES historias(id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+
+INSERT INTO recursos (titulo, descripcion, contenido) VALUES
+('Guía de Fundraising 2025', 'Pasos para conseguir inversión', 'Contenido completo del PDF...'),
+('Pitch Perfecto', 'Cómo impresionar a inversores', 'Estructura ideal de pitch...');
+
+
+
+select * from usuarios;
+
+ALTER TABLE proyectos
+ADD COLUMN imagen_url VARCHAR(255),
+ADD COLUMN video_url VARCHAR(255),
+ADD COLUMN contacto VARCHAR(100),
+ADD COLUMN redes_sociales TEXT;
+
+
+select * from usuarios;
+
+ALTER TABLE proyectos 
+ADD COLUMN imagen_principal_url VARCHAR(255) NULL,
+ADD COLUMN video_pitch_url VARCHAR(255) NULL,
+ADD COLUMN sitio_web VARCHAR(255) NULL,
+ADD COLUMN contacto VARCHAR(255) NULL,
+ADD COLUMN telefono_proyecto VARCHAR(50) NULL,
+ADD COLUMN redes JSON NULL;
+
+SHOW COLUMNS FROM proyectos;
+
+
+ALTER TABLE proyectos 
+ADD COLUMN imagen_principal_url VARCHAR(255) NULL,
+ADD COLUMN video_pitch_url VARCHAR(255) NULL,
+ADD COLUMN sitio_web VARCHAR(255) NULL,
+ADD COLUMN telefono_proyecto VARCHAR(50) NULL;
+
+
+ALTER TABLE proyectos
+ADD COLUMN redes TEXT NULL;
+
+INSERT INTO proyectos (usuario_id, titulo, descripcion, descripcion_larga, categoria_id, progreso, estado,
+    imagen_principal_url, video_pitch_url, catalogo_pdf_url, telefono_proyecto, whatsapp, instagram, facebook, twitter, linkedin, sitio_web, redes)
+VALUES (1, 'Tienda de Ropa Zack Style', 'Ropa urbana premium', 'Catálogo completo 2025 con más de 100 diseños...', 1, 85, 'publicado',
+    '/assets/uploads/ropa.jpg', '/assets/uploads/pitch.mp4', '/assets/uploads/catalogo.pdf',
+    '3001234567', '573001234567', 'https://instagram.com/zackstyle', 'https://facebook.com/zackstyle',
+    'https://twitter.com/zackstyle', 'https://linkedin.com/zackstyle', 'https://zackstyle.com',
+    '{"tiktok":"zackstyle"}');
+
+-- Tabla para mensajes del chat
+CREATE TABLE mensajes_chat (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sala VARCHAR(100) NOT NULL,
+    usuario_id INT NOT NULL,
+    tipo ENUM('texto', 'imagen', 'audio') NOT NULL,
+    contenido TEXT NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    INDEX idx_sala_fecha (sala, fecha),
+    INDEX idx_usuario_id (usuario_id)
+);
+
+-- Tabla para rastrear usuarios activos en salas (opcional, para mostrar cuántos usuarios hay en cada sala)
+CREATE TABLE usuarios_salas_activos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    sala VARCHAR(100) NOT NULL,
+    fecha_ultima_actividad DATETIME DEFAULT CURRENT_TIMESTAMP,
+    activo BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_usuario_sala (usuario_id, sala),
+    INDEX idx_sala (sala),
+    INDEX idx_activo (activo)
+);
+
+CREATE TABLE IF NOT EXISTS mensajes_chat (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sala VARCHAR(100) NOT NULL,
+    usuario_id INT NOT NULL,
+    tipo ENUM('texto', 'imagen', 'audio') NOT NULL,
+    contenido TEXT NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    INDEX idx_sala_fecha (sala, fecha)
+);
+
+select * from usuarios
+
