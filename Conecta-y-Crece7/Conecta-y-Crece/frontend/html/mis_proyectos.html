@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Proyectos - Conecta & Crece</title>
+  <link rel="stylesheet" href="../css/mis_proyectos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="mis-proyectos">
+
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <h1>Conecta & Crece</h1>
+      <div class="logo-glow"></div>
+    </div>
+    <div class="orb-menu-toggle"><i class="fas fa-globe"></i></div>
+    <div class="orb-menu">
+      <ul class="orb-items">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="perfil.html">Perfil</a></li>
+        <li><a href="comunidad.html">Comunidad</a></li>
+        <li><a href="proyectos.html">Proyectos</a></li>
+        <li><a href="mis_proyectos.html">Mis Proyectos</a></li>
+        <li><a href="historias.html">Historias</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+        <li><a href="recursos.html">Recursos</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="#" id="logout">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+    <div class="user-status" id="user-status">Cargando...</div>
+    <div class="nav-buttons">
+      <a href="registro.html" class="btn-registrarse">Registrarse</a>
+      <a href="login.html" class="btn-iniciar">Iniciar Sesión</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="bienvenida">
+    <h1 class="titulo-neon">Mis Proyectos</h1>
+    <p class="subtitulo-neon">Aquí controlas todo: crea, edita, publica o mantén en privado tus ideas</p>
+    <button id="btn-nuevo" class="btn-crear-proyecto">
+      Crear Nuevo Proyecto
+    </button>
+  </section>
+
+  <section class="proyectos-listado" id="mis-proyectos-container">
+    <p class="vacio"><i class="fas fa-spinner fa-spin"></i> Cargando tus proyectos...</p>
+  </section>
+</main>
+
+<!-- MODAL CREAR / EDITAR -->
+<div class="modal" id="modal-form">
+  <div class="modal-contenido">
+    <span class="cerrar-modal" id="cerrar-modal">×</span>
+    <h2 id="modal-title">Crear Proyecto</h2>
+    <form id="form-proyecto" enctype="multipart/form-data">
+      <input type="hidden" id="proyecto_id" name="proyecto_id">
+
+      <div class="form-grid">
+        <div><label>Título</label><input type="text" id="titulo" name="titulo" required></div>
+        <div><label>Descripción corta</label><textarea id="descripcion" name="descripcion" required></textarea></div>
+        <div><label>Descripción completa</label><textarea id="descripcion_larga" name="descripcion_larga"></textarea></div>
+        <div><label>Categoría</label>
+          <select id="categoria_id" name="categoria_id" required>
+            <option value="">Selecciona...</option>
+            <option value="1">Tecnología</option>
+            <option value="2">Salud</option>
+            <option value="3">Educación</option>
+            <option value="4">Medio Ambiente</option>
+            <option value="5">Emprendimiento</option>
+          </select>
+        </div>
+        <div><label>Progreso (%)</label><input type="number" id="progreso" name="progreso" min="0" max="100" value="0"></div>
+
+        <div>
+          <label>Imagen Principal</label>
+          <div class="drop-zone" id="drop-imagen"><p>Arrastra o haz clic</p><input type="file" id="imagen_principal" name="imagen_principal" accept="image/*"></div>
+          <div id="preview-imagen" class="preview"></div>
+        </div>
+        <div>
+          <label>Video Pitch</label>
+          <div class="drop-zone" id="drop-video"><p>Arrastra video</p><input type="file" id="video_pitch" name="video_pitch" accept="video/*"></div>
+          <div id="preview-video" class="preview"></div>
+        </div>
+        <div>
+          <label>Catálogo PDF</label>
+          <div class="drop-zone" id="drop-pdf"><p>Arrastra PDF</p><input type="file" id="catalogo_pdf" name="catalogo_pdf" accept=".pdf"></div>
+          <div id="preview-pdf" class="preview"></div>
+        </div>
+
+        <div><label>Sitio Web</label><input type="url" id="sitio_web" name="sitio_web" placeholder="https://"></div>
+        <div><label>Teléfono</label><input type="text" id="telefono_proyecto" name="telefono_proyecto"></div>
+        <div><label>WhatsApp</label><input type="text" id="whatsapp" name="whatsapp" placeholder="+57..."></div>
+        <div><label>Instagram</label><input type="text" id="instagram" name="instagram" placeholder="@usuario"></div>
+        <div><label>Facebook</label><input type="text" id="facebook" name="facebook"></div>
+        <div><label>LinkedIn</label><input type="text" id="linkedin" name="linkedin"></div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-guardar">Guardar Proyecto</button>
+        <button type="button" id="btn-cancel" class="btn-cancel">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/mis_proyectos.js"></script>
+<script>
+// ORB MENU + LOGOUT
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.orb-menu-toggle');
+  const items = document.querySelectorAll('.orb-items li');
+  let open = false;
+
+  toggle.addEventListener('click', () => {
+    open = !open;
+    items.forEach((item, i) => {
+      const angle = (i * 360 / items.length) * Math.PI / 180;
+      const radius = 110;
+      gsap.to(item, {
+        x: open ? Math.cos(angle) * radius : 0,
+        y: open ? Math.sin(angle) * radius : 0,
+        opacity: open ? 1 : 0,
+        duration: 0.6,
+        delay: i * 0.05,
+        ease: "back.out(1.7)"
+      });
+    });
+    toggle.style.transform = open ? 'rotate(90deg)' : 'rotate(0)';
+  });
+
+  document.getElementById('logout')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = 'login.html';
+  });
+});
+</script>
+</body>
+</html>
