@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0C002B, #1E0036);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(110, 0, 255, 0.3) 0%, rgba(0, 191, 255, 0.3) 70%, transparent 100%);
+    animation: wave 12s infinite linear;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Encabezado / Barra de Navegación */
+header {
+    background: rgba(30, 0, 54, 0.9);
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 2rem;
+}
+
+.logo h1 {
+    color: #9B26FF;
+    font-size: 2rem;
+    text-shadow: 0 0 15px #9B26FF, 0 0 30px #00BFFF;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover h1 {
+    transform: scale(1.1);
+}
+
+.logo-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(155, 38, 255, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 2s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes glowPulse {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(1.2); opacity: 0.3; }
+}
+
+/* Menú Orb Estilizado */
+.orb-menu-toggle {
+    cursor: pointer;
+    z-index: 1002;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #1A004D, #2A0073);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00BFFF;
+    font-size: 1.5rem;
+    box-shadow: 0 0 25px #00BFFF, 0 0 15px #9B26FF inset;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 5%;
+    top: 6rem;
+    transform: translateX(-50%);
+}
+
+.orb-menu-toggle:hover {
+    box-shadow: 0 0 50px #FF3B9E, 0 0 25px #00BFFF;
+    transform: translateX(-50%) scale(1.15) rotate(15deg);
+}
+
+.orb-menu {
+    position: absolute;
+    top: calc(6rem + 50px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+}
+
+.orb-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.orb-items li {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    text-align: center;
+}
+
+.orb-items li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    background: linear-gradient(135deg, #1A004D, #2A0073);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+    transition: all 0.4s ease;
+    text-shadow: 0 0 5px #00BFFF;
+}
+
+.orb-items li a:hover {
+    background: linear-gradient(135deg, #00BFFF, #FF3B9E);
+    color: #1A004D;
+    box-shadow: 0 0 30px #00BFFF, 0 0 20px #FF3B9E;
+    transform: scale(1.2);
+}
+
+.user-status {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    color: #FFFFFF;
+    font-size: 1rem;
+    background: rgba(26, 0, 77, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.user-status:hover {
+    box-shadow: 0 0 20px #00BFFF;
+    transform: translateY(-2px);
+}
+
+/* Sección Eventos */
+main {
+    flex: 1;
+    padding: 20px;
+    min-height: 100vh;
+    position: relative;
+    overflow-y: auto;
+}
+
+.eventos {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.titulo-neon {
+    color: #9B26FF;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 25px #9B26FF, 0 0 50px #00BFFF;
+    margin-bottom: 1rem;
+    animation: neonBlink 1.5s infinite alternate;
+}
+
+@keyframes neonBlink {
+    0% { text-shadow: 0 0 25px #9B26FF, 0 0 50px #00BFFF; }
+    100% { text-shadow: 0 0 35px #9B26FF, 0 0 60px #00BFFF; }
+}
+
+.subtitulo-neon {
+    color: #FF3B9E;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px #00BFFF, 0 0 20px #FF3B9E;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.eventos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.evento-card {
+    background: linear-gradient(135deg, rgba(26, 0, 77, 0.9), rgba(42, 0, 115, 0.9));
+    border: 3px solid #00BFFF;
+    border-radius: 15px;
+    padding: 1.5rem;
+    width: 300px;
+    text-align: left;
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.5), 0 0 10px #FF3B9E inset;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.evento-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 35px #00BFFF, 0 0 15px #FF3B9E inset;
+}
+
+.evento-card h3 {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 0 5px #00BFFF;
+}
+
+.evento-card p {
+    color: #CCCCCC;
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 0 2px #FFFFFF;
+}
+
+.btn-registrarse-evento {
+    background: linear-gradient(to right, #9B26FF, #00BFFF);
+    color: #FFFFFF;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px #00BFFF;
+}
+
+.btn-registrarse-evento:hover {
+    box-shadow: 0 0 20px #FF3B9E, 0 0 15px #00BFFF;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .orb-menu-toggle {
+        position: static;
+        margin: 0 auto;
+    }
+
+    .user-status {
+        right: 4rem;
+        top: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .evento-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .titulo-neon {
+        font-size: 2.5rem;
+    }
+
+    .subtitulo-neon {
+        font-size: 1.2rem;
+    }
+}
