@@ -1,0 +1,137 @@
+2025-10-31 11:28:14,329 - INFO - API Conecta y Crece iniciada
+2025-10-31 11:28:14,501 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.178.152:5000
+2025-10-31 11:28:14,501 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-31 11:28:14,503 - INFO -  * Restarting with stat
+2025-10-31 11:28:14,978 - INFO - API Conecta y Crece iniciada
+2025-10-31 11:28:15,011 - WARNING -  * Debugger is active!
+2025-10-31 11:28:15,013 - INFO -  * Debugger PIN: 667-458-821
+2025-10-31 11:28:51,630 - INFO - 127.0.0.1 - - [31/Oct/2025 11:28:51] "OPTIONS /login HTTP/1.1" 200 -
+2025-10-31 11:28:52,023 - INFO - Admin logueado exitosamente
+2025-10-31 11:28:52,023 - INFO - 127.0.0.1 - - [31/Oct/2025 11:28:52] "POST /login HTTP/1.1" 200 -
+2025-10-31 11:28:53,130 - INFO - 127.0.0.1 - - [31/Oct/2025 11:28:53] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:28:53,554 - INFO - package: mysql.connector.plugins
+2025-10-31 11:28:53,554 - INFO - plugin_name: mysql_native_password
+2025-10-31 11:28:53,555 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2025-10-31 11:28:53,557 - INFO - Conexión MySQL exitosa
+2025-10-31 11:28:53,559 - INFO - 127.0.0.1 - - [31/Oct/2025 11:28:53] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:29:40,105 - INFO - 127.0.0.1 - - [31/Oct/2025 11:29:40] "OPTIONS /login HTTP/1.1" 200 -
+2025-10-31 11:29:40,560 - INFO - Admin logueado exitosamente
+2025-10-31 11:29:40,561 - INFO - 127.0.0.1 - - [31/Oct/2025 11:29:40] "POST /login HTTP/1.1" 200 -
+2025-10-31 11:29:41,618 - INFO - 127.0.0.1 - - [31/Oct/2025 11:29:41] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:29:41,929 - INFO - Conexión MySQL exitosa
+2025-10-31 11:29:41,934 - INFO - 127.0.0.1 - - [31/Oct/2025 11:29:41] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:30:08,765 - INFO - 127.0.0.1 - - [31/Oct/2025 11:30:08] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:31:31,257 - INFO - 127.0.0.1 - - [31/Oct/2025 11:31:31] "OPTIONS /registro HTTP/1.1" 200 -
+2025-10-31 11:31:31,510 - INFO - Conexión MySQL exitosa
+2025-10-31 11:31:31,673 - INFO - Usuario registrado: diegoydaniela@gmail.com
+2025-10-31 11:31:31,674 - INFO - 127.0.0.1 - - [31/Oct/2025 11:31:31] "[35m[1mPOST /registro HTTP/1.1[0m" 201 -
+2025-10-31 11:31:56,395 - INFO - 127.0.0.1 - - [31/Oct/2025 11:31:56] "OPTIONS /login HTTP/1.1" 200 -
+2025-10-31 11:31:56,702 - INFO - Conexión MySQL exitosa
+2025-10-31 11:31:56,839 - INFO - Login exitoso: diegoydaniela@gmail.com
+2025-10-31 11:31:56,840 - INFO - 127.0.0.1 - - [31/Oct/2025 11:31:56] "POST /login HTTP/1.1" 200 -
+2025-10-31 11:32:31,351 - INFO - 127.0.0.1 - - [31/Oct/2025 11:32:31] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:32:31,657 - INFO - Conexión MySQL exitosa
+2025-10-31 11:32:31,658 - INFO - 127.0.0.1 - - [31/Oct/2025 11:32:31] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:33:00,620 - INFO - 127.0.0.1 - - [31/Oct/2025 11:33:00] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:33:00,934 - INFO - Conexión MySQL exitosa
+2025-10-31 11:33:00,937 - INFO - 127.0.0.1 - - [31/Oct/2025 11:33:00] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:34:27,518 - INFO - 127.0.0.1 - - [31/Oct/2025 11:34:27] "OPTIONS /login HTTP/1.1" 200 -
+2025-10-31 11:34:27,908 - INFO - Admin logueado exitosamente
+2025-10-31 11:34:27,908 - INFO - 127.0.0.1 - - [31/Oct/2025 11:34:27] "POST /login HTTP/1.1" 200 -
+2025-10-31 11:34:28,966 - INFO - 127.0.0.1 - - [31/Oct/2025 11:34:28] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:34:29,291 - INFO - Conexión MySQL exitosa
+2025-10-31 11:34:29,296 - INFO - 127.0.0.1 - - [31/Oct/2025 11:34:29] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:36:23,456 - INFO -  * Detected change in 'C:\\Users\\USUARIO\\Downloads\\Conecta-y-Crece\\backend\\api_conecta_crece.py', reloading
+2025-10-31 11:36:23,504 - INFO -  * Restarting with stat
+2025-10-31 11:36:24,119 - INFO - API Conecta y Crece iniciada
+2025-10-31 11:36:24,155 - WARNING -  * Debugger is active!
+2025-10-31 11:36:24,158 - INFO -  * Debugger PIN: 667-458-821
+2025-10-31 11:36:24,217 - INFO - 127.0.0.1 - - [31/Oct/2025 11:36:24] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:36:24,219 - INFO - 127.0.0.1 - - [31/Oct/2025 11:36:24] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:36:24,221 - INFO - 127.0.0.1 - - [31/Oct/2025 11:36:24] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:36:24,652 - INFO - package: mysql.connector.plugins
+2025-10-31 11:36:24,652 - INFO - plugin_name: mysql_native_password
+2025-10-31 11:36:24,653 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2025-10-31 11:36:24,654 - INFO - Conexión MySQL exitosa
+2025-10-31 11:36:24,656 - INFO - 127.0.0.1 - - [31/Oct/2025 11:36:24] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:36:24,809 - INFO - Conexión MySQL exitosa
+2025-10-31 11:36:24,811 - INFO - 127.0.0.1 - - [31/Oct/2025 11:36:24] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:36:25,521 - INFO - Conexión MySQL exitosa
+2025-10-31 11:36:25,523 - INFO - 127.0.0.1 - - [31/Oct/2025 11:36:25] "GET /admin/reportes HTTP/1.1" 200 -
+2025-10-31 11:37:23,768 - INFO - 127.0.0.1 - - [31/Oct/2025 11:37:23] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 09:30:19,949 - INFO - API Conecta y Crece iniciada
+2025-11-01 09:30:20,197 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.178.231:5000
+2025-11-01 09:30:20,197 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-01 09:30:20,200 - INFO -  * Restarting with stat
+2025-11-01 09:30:20,741 - INFO - API Conecta y Crece iniciada
+2025-11-01 09:30:20,756 - WARNING -  * Debugger is active!
+2025-11-01 09:30:20,757 - INFO -  * Debugger PIN: 304-662-181
+2025-11-01 09:40:12,154 - INFO - 127.0.0.1 - - [01/Nov/2025 09:40:12] "OPTIONS /login HTTP/1.1" 200 -
+2025-11-01 09:40:12,569 - INFO - Admin logueado exitosamente
+2025-11-01 09:40:12,569 - INFO - 127.0.0.1 - - [01/Nov/2025 09:40:12] "POST /login HTTP/1.1" 200 -
+2025-11-01 09:40:13,682 - INFO - 127.0.0.1 - - [01/Nov/2025 09:40:13] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 09:40:14,183 - ERROR - Error al conectar a MySQL: 1049 (42000): Unknown database 'conecta_crece'
+2025-11-01 09:40:14,183 - INFO - 127.0.0.1 - - [01/Nov/2025 09:40:14] "[35m[1mGET /admin/reportes HTTP/1.1[0m" 500 -
+2025-11-01 09:40:54,590 - INFO - 127.0.0.1 - - [01/Nov/2025 09:40:54] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 09:40:54,898 - INFO - Conexión MySQL exitosa
+2025-11-01 09:40:54,899 - INFO - 127.0.0.1 - - [01/Nov/2025 09:40:54] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 09:45:29,548 - INFO - 127.0.0.1 - - [01/Nov/2025 09:45:29] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 09:45:29,816 - INFO - Conexión MySQL exitosa
+2025-11-01 09:45:29,817 - INFO - 127.0.0.1 - - [01/Nov/2025 09:45:29] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:15:28,618 - INFO - 127.0.0.1 - - [01/Nov/2025 10:15:28] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:15:28,877 - INFO - Conexión MySQL exitosa
+2025-11-01 10:15:28,881 - INFO - 127.0.0.1 - - [01/Nov/2025 10:15:28] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:45:28,650 - INFO - 127.0.0.1 - - [01/Nov/2025 10:45:28] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:45:28,919 - INFO - Conexión MySQL exitosa
+2025-11-01 10:45:28,920 - INFO - 127.0.0.1 - - [01/Nov/2025 10:45:28] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:50:09,371 - INFO - 127.0.0.1 - - [01/Nov/2025 10:50:09] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:50:09,621 - INFO - 127.0.0.1 - - [01/Nov/2025 10:50:09] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:50:09,625 - INFO - Conexión MySQL exitosa
+2025-11-01 10:50:09,627 - INFO - 127.0.0.1 - - [01/Nov/2025 10:50:09] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 10:50:09,878 - INFO - Conexión MySQL exitosa
+2025-11-01 10:50:09,880 - INFO - 127.0.0.1 - - [01/Nov/2025 10:50:09] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:13:31,573 - INFO - 127.0.0.1 - - [01/Nov/2025 11:13:31] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:13:31,835 - INFO - Conexión MySQL exitosa
+2025-11-01 11:13:31,836 - INFO - 127.0.0.1 - - [01/Nov/2025 11:13:31] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:13:55,621 - INFO - 127.0.0.1 - - [01/Nov/2025 11:13:55] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:13:55,941 - INFO - Conexión MySQL exitosa
+2025-11-01 11:13:55,943 - INFO - 127.0.0.1 - - [01/Nov/2025 11:13:55] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:14:06,857 - INFO - 127.0.0.1 - - [01/Nov/2025 11:14:06] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:14:07,168 - INFO - Conexión MySQL exitosa
+2025-11-01 11:14:07,170 - INFO - 127.0.0.1 - - [01/Nov/2025 11:14:07] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:31:00,739 - INFO - API Conecta y Crece iniciada
+2025-11-01 11:31:00,770 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.178.231:5000
+2025-11-01 11:31:00,770 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-01 11:31:00,772 - INFO -  * Restarting with stat
+2025-11-01 11:31:01,231 - INFO - API Conecta y Crece iniciada
+2025-11-01 11:31:01,245 - WARNING -  * Debugger is active!
+2025-11-01 11:31:01,247 - INFO -  * Debugger PIN: 304-662-181
+2025-11-01 11:33:45,888 - INFO - 127.0.0.1 - - [01/Nov/2025 11:33:45] "OPTIONS /registro HTTP/1.1" 200 -
+2025-11-01 11:33:46,360 - INFO - Conexión MySQL exitosa
+2025-11-01 11:33:46,588 - INFO - Usuario registrado: nic@gmail.com
+2025-11-01 11:33:46,590 - INFO - 127.0.0.1 - - [01/Nov/2025 11:33:46] "[35m[1mPOST /registro HTTP/1.1[0m" 201 -
+2025-11-01 11:34:10,780 - INFO - 127.0.0.1 - - [01/Nov/2025 11:34:10] "OPTIONS /login HTTP/1.1" 200 -
+2025-11-01 11:34:11,088 - INFO - Conexión MySQL exitosa
+2025-11-01 11:34:11,225 - INFO - Login exitoso: nic@gmail.com
+2025-11-01 11:34:11,226 - INFO - 127.0.0.1 - - [01/Nov/2025 11:34:11] "POST /login HTTP/1.1" 200 -
+2025-11-01 11:34:40,035 - INFO - 127.0.0.1 - - [01/Nov/2025 11:34:40] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:34:40,354 - INFO - Conexión MySQL exitosa
+2025-11-01 11:34:40,356 - INFO - 127.0.0.1 - - [01/Nov/2025 11:34:40] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:35:29,619 - INFO - 127.0.0.1 - - [01/Nov/2025 11:35:29] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:35:29,940 - INFO - Conexión MySQL exitosa
+2025-11-01 11:35:29,942 - INFO - 127.0.0.1 - - [01/Nov/2025 11:35:29] "GET /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:36:19,486 - INFO - 127.0.0.1 - - [01/Nov/2025 11:36:19] "OPTIONS /login HTTP/1.1" 200 -
+2025-11-01 11:36:19,974 - INFO - Admin logueado exitosamente
+2025-11-01 11:36:19,975 - INFO - 127.0.0.1 - - [01/Nov/2025 11:36:19] "POST /login HTTP/1.1" 200 -
+2025-11-01 11:36:21,760 - INFO - 127.0.0.1 - - [01/Nov/2025 11:36:21] "OPTIONS /admin/reportes HTTP/1.1" 200 -
+2025-11-01 11:36:22,070 - INFO - Conexión MySQL exitosa
+2025-11-01 11:36:22,071 - INFO - 127.0.0.1 - - [01/Nov/2025 11:36:22] "GET /admin/reportes HTTP/1.1" 200 -
