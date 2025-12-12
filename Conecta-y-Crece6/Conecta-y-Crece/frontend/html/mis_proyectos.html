@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mis Proyectos - Conecta & Crece</title>
+    <link rel="stylesheet" href="../css/mis_proyectos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body data-page="mis-proyectos">
+<header>
+    <nav class="navbar">
+        <div class="logo"><h1>Conecta & Crece</h1><div class="logo-glow"></div></div>
+        <div class="orb-menu-toggle"><i class="fas fa-globe"></i></div>
+        <div class="user-status" id="user-status">Cargando...</div>
+        <div class="nav-buttons">
+            <a href="registro.html" class="btn-registrarse">Registrarse</a>
+            <a href="login.html" class="btn-iniciar">Iniciar Sesión</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="titulo-section">
+        <h1 class="titulo-neon">Mis Proyectos</h1>
+        <p class="subtitulo-neon">Gestiona, edita y publica tus proyectos desde aquí.</p>
+        <button id="btn-nuevo" class="btn-crear-proyecto">Crear Nuevo Proyecto</button>
+    </section>
+
+    <section class="mis-proyectos-container" id="mis-proyectos-container">
+        <p class="vacio">Cargando tus proyectos...</p>
+    </section>
+</main>
+
+<!-- Modal Crear/Editar -->
+<div class="modal" id="modal-form">
+    <div class="modal-contenido">
+        <span class="cerrar-modal" id="cerrar-modal">×</span>
+        <h2 id="modal-title">Crear Proyecto</h2>
+        <form id="form-proyecto" enctype="multipart/form-data">
+            <input type="hidden" id="proyecto_id" name="proyecto_id" />
+            <label>Título</label>
+            <input type="text" id="titulo" name="titulo" required />
+
+            <label>Descripción</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+
+            <label>Categoría</label>
+            <select id="categoria_id" name="categoria_id" required>
+                <option value="">Selecciona</option>
+                <option value="1">Tecnología</option>
+                <option value="2">Salud</option>
+                <option value="3">Educación</option>
+                <option value="4">Sostenibilidad</option>
+                <option value="5">Fintech</option>
+            </select>
+
+            <label>Progreso (%)</label>
+            <input type="number" id="progreso" name="progreso" min="0" max="100" value="0" />
+
+            <label>Imagen principal (png,jpg)</label>
+            <input type="file" id="imagen_principal" name="imagen_principal" accept="image/*" />
+
+            <label>Video pitch (mp4,webm)</label>
+            <input type="file" id="video_pitch" name="video_pitch" accept="video/*" />
+
+            <label>Sitio / Enlace</label>
+            <input type="url" id="sitio_web" name="sitio_web" />
+
+            <label>Contacto</label>
+            <input type="text" id="contacto" name="contacto" />
+
+            <label>Teléfono proyecto</label>
+            <input type="text" id="telefono_proyecto" name="telefono_proyecto" />
+
+            <label>Redes (JSON o links separados por coma)</label>
+            <input type="text" id="redes" name="redes" placeholder='{"twitter":"...","linkedin":"..."} or comma separated' />
+
+            <div class="form-actions">
+                <button type="submit" class="btn-guardar">Guardar</button>
+                <button type="button" id="btn-cancel" class="btn-cancel">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Detalles -->
+<div class="modal" id="modal-detalle">
+    <div class="modal-contenido detalle">
+        <span class="cerrar-modal" id="cerrar-detalle">×</span>
+        <h2 id="detalle-title"></h2>
+        <div id="detalle-body"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/mis_proyectos.js"></script>
+</body>
+</html>

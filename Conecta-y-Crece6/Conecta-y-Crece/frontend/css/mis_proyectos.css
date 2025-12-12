@@ -1,0 +1,98 @@
+/* mis_proyectos.css - estilo para página Mis Proyectos */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root{
+    --bg1: #0C002B;
+    --bg2: #1E0036;
+    --accent1: #9B26FF;
+    --accent2: #00BFFF;
+    --accent3: #FF3B9E;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    color: #fff;
+    margin: 0;
+    min-height: 100vh;
+}
+
+header {
+    background: rgba(20,8,40,0.7);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+.logo h1 {
+    color: var(--accent1);
+    margin: 0;
+    text-shadow: 0 0 15px var(--accent1), 0 0 30px var(--accent2);
+}
+
+main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+
+.titulo-section { text-align: center; margin-bottom: 1.5rem; }
+.titulo-neon { color: var(--accent1); font-size: 2.6rem; text-shadow: 0 0 25px var(--accent1); margin: 0; }
+.subtitulo-neon { color: var(--accent3); margin: 0.4rem 0 1rem; }
+
+.btn-crear-proyecto {
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    border: none; color: white;
+    padding: 0.6rem 1rem; border-radius: 18px; cursor: pointer;
+    box-shadow: 0 0 18px rgba(0,191,255,0.12);
+}
+
+.mis-proyectos-container { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1rem; margin-top: 1.5rem; }
+
+.card-proyecto {
+    background: linear-gradient(135deg, rgba(26,0,77,0.9), rgba(42,0,115,0.9));
+    border: 2px solid rgba(0,191,255,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    align-items: center;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.card-proyecto:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+
+.thumb {
+    width: 100px; height: 100px; background-size: cover; background-position: center; border-radius: 8px;
+    flex: 0 0 100px;
+    box-shadow: 0 0 12px rgba(0,191,255,0.1);
+}
+
+.thumb.placeholder { display:flex; align-items:center; justify-content:center; color:#ccc; font-size:0.9rem; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.04); }
+
+.info { flex: 1; }
+.info h3 { margin:0; color: #fff; font-size:1.1rem; }
+.info p { margin:6px 0; color: #dcdcdc; font-size:0.95rem; }
+
+.acciones { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.acciones button {
+    background: rgba(255,255,255,0.06); color: #fff; border: none; padding: 6px 8px; border-radius:8px; cursor:pointer;
+    transition: transform .12s, background .12s;
+}
+.acciones button:hover { transform: translateY(-3px); background: linear-gradient(90deg,var(--accent2),var(--accent3)); }
+
+.modal { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.7); z-index:100; align-items:center; justify-content:center; }
+.modal-contenido { background: linear-gradient(135deg,#1A004D,#2A0073); width:95%; max-width:720px; border-radius:12px; padding:1.2rem; color:#fff; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.modal-contenido label { display:block; margin-top:8px; font-size:0.9rem; color:#dcdcdc; }
+.modal-contenido input[type="text"], .modal-contenido textarea, .modal-contenido select, .modal-contenido input[type="url"], .modal-contenido input[type="number"] {
+    width:100%; padding:10px; border-radius:8px; margin-top:6px; border:1px solid rgba(0,191,255,0.12); background: rgba(255,255,255,0.03); color:#fff;
+}
+.form-actions { display:flex; gap:8px; margin-top:12px; justify-content:flex-end; }
+.btn-guardar { background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; border:none; padding:8px 14px; border-radius:10px; cursor:pointer; }
+.btn-cancel { background:transparent; color:#FF3B9E; border:1px solid rgba(255,59,158,0.2); padding:8px 12px; border-radius:10px; cursor:pointer; }
+
+.vacio { text-align:center; color:#FF3B9E; padding:30px 0; }
+
+@media(max-width:600px){
+    .card-proyecto { flex-direction: column; align-items:flex-start; }
+    .thumb { width:100%; height:160px; flex: none; border-radius:10px; }
+    .acciones { justify-content:flex-start; }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Público - Conecta & Crece</title>
+  <link rel="stylesheet" href="../css/perfil-publico.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Conecta & Crece</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../html/index.html">Inicio</a></li>
+        <li><a href="../html/comunidad.html">Comunidad</a></li>
+        <li id="user-status"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="perfil-container">
+      <div class="perfil-card">
+        <div class="foto-perfil" id="foto-perfil"></div>
+        <h2 id="nombre-completo">Cargando...</h2>
+        <p><strong>Rol:</strong> <span id="rol">Cargando...</span></p>
+        <p><strong>Ubicación:</strong> <span id="ubicacion">Cargando...</span></p>
+        <p><strong>Habilidades:</strong> <span id="habilidades">Cargando...</span></p>
+        <p><strong>Bio:</strong> <span id="bio">Cargando...</span></p>
+        <button class="btn-conectar" onclick="conectar()">Conectar</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Conecta & Crece. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="/frontend/js/auth.js"></script>
+  <script src="/frontend/js/perfil-publico.js"></script>
+</body>
+</html>
