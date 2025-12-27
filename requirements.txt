@@ -1,4 +1,8 @@
-flask
-mysql-connector-python
-flask-cors
-bcrypt
+Flask==2.3.3
+Flask-CORS==4.0.0
+Flask-Bcrypt==1.0.1
+mysql-connector-python==8.2.0
+werkzeug==2.3.7
+PyJwt
+flask_socketio
+datetime
