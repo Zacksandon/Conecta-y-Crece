@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+/* ==================== BASE ==================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0C002B, #1E0036);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+    color: #FFFFFF;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(155, 38, 255, 0.25) 0%, rgba(0, 191, 255, 0.25) 70%, transparent 100%);
+    animation: wave 12s infinite linear;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==================== HEADER & NAVBAR ==================== */
+header {
+    background: rgba(30, 0, 54, 0.9);
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 2rem;
+}
+
+.logo h1 {
+    color: #9B26FF;
+    font-size: 2rem;
+    text-shadow: 0 0 15px #9B26FF, 0 0 30px #00BFFF;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover h1 {
+    transform: scale(1.1);
+}
+
+.logo-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(155, 38, 255, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 2s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes glowPulse {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(1.2); opacity: 0.3; }
+}
+
+/* ==================== ORB MENU ==================== */
+.orb-menu-toggle {
+    cursor: pointer;
+    z-index: 1002;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #1A004D, #2A0073);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00BFFF;
+    font-size: 1.5rem;
+    box-shadow: 0 0 25px #00BFFF, 0 0 15px #9B26FF inset;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 5%;
+    top: 6rem;
+    transform: translateX(-50%);
+}
+
+.orb-menu-toggle:hover {
+    box-shadow: 0 0 50px #FF3B9E, 0 0 25px #00BFFF;
+    transform: translateX(-50%) scale(1.15) rotate(15deg);
+}
+
+.orb-menu {
+    position: absolute;
+    top: calc(6rem + 50px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+}
+
+.orb-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.orb-items li {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    text-align: center;
+}
+
+.orb-items li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    background: linear-gradient(135deg, #1A004D, #2A0073);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+    transition: all 0.4s ease;
+    text-shadow: 0 0 5px #00BFFF;
+}
+
+.orb-items li a:hover {
+    background: linear-gradient(135deg, #00BFFF, #FF3B9E);
+    color: #1A004D;
+    box-shadow: 0 0 30px #00BFFF, 0 0 20px #FF3B9E;
+    transform: scale(1.2);
+}
+
+/* ==================== USER & BOTONES ==================== */
+.user-status {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    color: #FFFFFF;
+    font-size: 1rem;
+    background: rgba(26, 0, 77, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.user-status:hover {
+    box-shadow: 0 0 20px #00BFFF;
+    transform: translateY(-2px);
+}
+
+.nav-buttons {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-registrarse, .btn-iniciar {
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+.btn-registrarse {
+    background: linear-gradient(135deg, #9B26FF, #00BFFF);
+    color: white;
+}
+
+.btn-iniciar {
+    background: transparent;
+    color: #00BFFF;
+    border: 2px solid #00BFFF;
+}
+
+.btn-registrarse:hover, .btn-iniciar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #FF3B9E;
+}
+
+/* ==================== MAIN & RECURSOS ==================== */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    position: relative;
+    overflow-y: auto;
+}
+
+.recursos {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+}
+
+.titulo-neon {
+    color: #9B26FF;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 25px #9B26FF, 0 0 50px #00BFFF;
+    margin-bottom: 1rem;
+    animation: neonBlink 1.5s infinite alternate;
+}
+
+.subtitulo-neon {
+    color: #FF3B9E;
+    font-size: 1.4rem;
+    text-shadow: 0 0 10px #00BFFF, 0 0 20px #FF3B9E;
+    margin-bottom: 2.5rem;
+}
+
+@keyframes neonBlink {
+    0% { text-shadow: 0 0 25px #9B26FF, 0 0 50px #00BFFF; }
+    100% { text-shadow: 0 0 35px #9B26FF, 0 0 60px #00BFFF; }
+}
+
+/* ==================== TARJETAS DE RECURSOS ==================== */
+.recursos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.recurso-card {
+    background: linear-gradient(145deg, rgba(20, 0, 60, 0.9), rgba(0, 191, 255, 0.05));
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,191,255,0.3);
+    padding: 25px;
+    text-align: left;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.recurso-card h3 {
+    color: #00BFFF;
+    text-shadow: 0 0 10px #00BFFF;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.recurso-card .descripcion {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.recurso-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px #00BFFF, 0 0 40px #FF3B9E;
+}
+
+/* ==================== BOTÓN DESCARGAR ==================== */
+.btn-descargar {
+    background: linear-gradient(135deg, #9B26FF, #00BFFF);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 18px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0,191,255,0.4);
+}
+
+.btn-descargar i {
+    margin-right: 8px;
+}
+
+.btn-descargar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px #FF3B9E;
+    background: linear-gradient(135deg, #00BFFF, #9B26FF);
+}
+
+/* ==================== ESTADOS ==================== */
+.vacio, .error {
+    color: #FF3B9E;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 40px 0;
+    text-shadow: 0 0 10px #FF3B9E;
+}
+
+/* ==================== PARTÍCULAS ==================== */
+.particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .titulo-neon {
+        font-size: 2.8rem;
+    }
+    .subtitulo-neon {
+        font-size: 1.1rem;
+    }
+}
