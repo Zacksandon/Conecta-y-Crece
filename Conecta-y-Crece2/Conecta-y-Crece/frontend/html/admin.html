@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - Conecta & Crece</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Librerías jsPDF y autoTable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+  <style>
+    .download-btn {
+      background: linear-gradient(90deg, #ff6a00, #ffcc00);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 15px 0;
+      transition: 0.3s ease;
+    }
+    .download-btn:hover {
+      background: linear-gradient(90deg, #ffcc00, #ff6a00);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Conecta & Crece</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li id="user-info"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="admin-container">
+      <h1 class="titulo-neon">Panel de Administración</h1>
+
+      <!-- Botón para descargar PDF -->
+      <button id="downloadPDF" class="download-btn">
+        <i class="fas fa-file-pdf"></i> Descargar Informe PDF
+      </button>
+
+      <div id="reportes"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Conecta & Crece. Todos los derechos reservados.</p>
+    <div class="redes-sociales">
+      <a href="#" class="icono"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="icono"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="icono"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const reportesDiv = document.getElementById('reportes');
+    const userInfo = document.getElementById('user-info');
+    let usuariosData = [];
+
+    // Mostrar usuario logueado
+    window.addEventListener('load', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        userInfo.innerHTML = `<a href="#" style="color: #00BFFF;">Sesión: ${user.nombre} ${user.apellido} (Salir)</a>`;
+        userInfo.querySelector('a').addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.removeItem('user');
+          userInfo.innerHTML = '';
+          window.location.reload();
+        });
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+
+    // Cargar reportes desde el backend
+    async function loadReportes() {
+      try {
+        const response = await fetch('http://localhost:5000/admin/reportes', {
+          method: 'GET',
+          headers: { 'Authorization': 'Bearer admin123' } // Token simulado
+        });
+
+        if (!response.ok) throw new Error('Acceso denegado o error: ' + response.status);
+
+        const result = await response.json();
+        if (result.reportes) {
+          usuariosData = result.reportes;
+          let html = '<h2 class="neon-subtext">Reportes de Usuarios</h2><ul>';
+          result.reportes.forEach(user => {
+            html += `
+              <li class="user-report">
+                <span><b>Nombre:</b> ${user.nombre} ${user.apellido} (${user.rol})</span>
+                <span><b>Correo:</b> ${user.correo}</span>
+                <span><b>Ubicación:</b> ${user.ubicacion}</span>
+                <span><b>Bio:</b> ${user.bio}</span>
+                <span><b>Habilidades:</b> ${user.habilidades}</span>
+                <button class="delete-btn" data-id="${user.id}">Eliminar</button>
+              </li>
+            `;
+          });
+          html += '</ul>';
+          reportesDiv.innerHTML = html;
+
+          // Botones eliminar
+          document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+              const userId = btn.getAttribute('data-id');
+              const confirmDelete = confirm(`¿Eliminar a ${btn.parentElement.querySelector('span').textContent}?`);
+              if (confirmDelete) {
+                const deleteResponse = await fetch(`http://localhost:5000/admin/eliminar/${userId}`, {
+                  method: 'DELETE',
+                  headers: { 'Authorization': 'Bearer admin123' }
+                });
+                if (deleteResponse.ok) {
+                  btn.parentElement.remove();
+                  alert('Usuario eliminado exitosamente');
+                } else {
+                  alert('Error al eliminar usuario');
+                }
+              }
+            });
+          });
+        } else {
+          reportesDiv.innerHTML = '<p class="neon-subtext">No hay usuarios registrados</p>';
+        }
+      } catch (error) {
+        reportesDiv.innerHTML = `<p class="neon-subtext">Error: ${error.message}</p>`;
+        console.error('Error:', error);
+      }
+    }
+
+    loadReportes();
+
+    // Función para generar PDF con datos reales
+    document.getElementById("downloadPDF").addEventListener("click", async () => {
+      if (usuariosData.length === 0) {
+        alert("No hay datos disponibles para generar el PDF.");
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF('p', 'pt', 'a4');
+
+      // Título
+      doc.setFontSize(20);
+      doc.setTextColor(255, 102, 0);
+      doc.text("Informe de Usuarios - Conecta & Crece", 40, 50);
+
+      // Fecha
+      doc.setFontSize(12);
+      doc.setTextColor(100);
+      doc.text(`Generado el ${new Date().toLocaleDateString()}`, 40, 70);
+
+      // Tabla de datos
+      const tableData = usuariosData.map(u => [
+        u.id || '',
+        `${u.nombre} ${u.apellido}`,
+        u.correo,
+        u.rol,
+        u.ubicacion,
+        u.bio || '',
+        u.habilidades || ''
+      ]);
+
+      doc.autoTable({
+        startY: 90,
+        head: [['ID', 'Nombre', 'Correo', 'Rol', 'Ubicación', 'Bio', 'Habilidades']],
+        body: tableData,
+        styles: { fontSize: 9, cellPadding: 5, overflow: 'linebreak' },
+        headStyles: { fillColor: [255, 102, 0], textColor: 255 },
+        alternateRowStyles: { fillColor: [245, 245, 245] },
+        margin: { left: 40, right: 40 }
+      });
+
+      doc.save(`informe_conecta_crece_${Date.now()}.pdf`);
+    });
+  </script>
+</body>
+</html>
