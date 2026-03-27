@@ -1,0 +1,229 @@
+/* frontend/css/perfil-publico.css */
+/* IMPORTANTE: Usa Google Fonts para Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+/* NAVEGACIÓN */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(15, 12, 41, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo h1 {
+    color: #00BFFF;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: #00BFFF;
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00BFFF;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* PERFIL */
+.perfil-container {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.perfil-card {
+    background: rgba(15, 12, 41, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 191, 255, 0.2);
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* EFECTO BRILLO ANIMADO */
+.perfil-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(0, 191, 255, 0.05), transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.foto-perfil {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 0 auto 1.8rem;
+    background-size: cover;
+    background-position: center;
+    border: 5px solid #00BFFF;
+    box-shadow: 
+        0 0 30px rgba(0, 191, 255, 0.6),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s;
+}
+
+.foto-perfil:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 191, 255, 0.8);
+}
+
+/* NOMBRE CON GRADIENTE */
+.perfil-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #00BFFF, #1E90FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback */
+}
+
+/* CAMPOS */
+.perfil-card p {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.perfil-card p strong {
+    color: #00BFFF;
+    font-weight: 600;
+    min-width: 120px;
+    text-align: left;
+}
+
+/* BOTÓN CONECTAR */
+.btn-conectar {
+    margin-top: 2.5rem;
+    padding: 1rem 3rem;
+    background: linear-gradient(45deg, #00BFFF, #1E90FF);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s;
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-conectar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+
+.btn-conectar:hover::before {
+    left: 100%;
+}
+
+.btn-conectar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 191, 255, 0.6);
+}
+
+.btn-conectar:disabled {
+    background: #555;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+footer {
+    text-align: center;
+    padding: 3rem;
+    margin-top: 4rem;
+    color: #aaa;
+    font-size: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
